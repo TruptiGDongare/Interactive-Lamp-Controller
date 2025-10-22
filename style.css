@@ -1,0 +1,154 @@
+:root {
+    --lamp-color: #ff9ecd;
+    --lamp-inner: #fff5f9;
+    --lamp-shadow: #ff80bf;
+    --lamp-light: rgba(255, 182, 213, 0.4);
+    --bg-color: #8257e6;
+    --lamp-width: 160px;
+    --lamp-height: 100px;
+    --lamp-top-height: 20px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-color);
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+.lamp {
+    position: relative;
+    height: 300px;
+    margin-bottom: 2rem;
+}
+
+.lamp-wire {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 60px;
+    background-color: #666;
+    transform: translateX(-50%);
+}
+
+.lamp-body {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--lamp-width);
+    height: var(--lamp-height);
+    background: var(--lamp-color);
+    border-radius: 50% / 10%;
+    transform-origin: center top;
+    overflow: hidden;
+}
+
+.lamp-inner {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(var(--lamp-width) - 20px);
+    height: calc(var(--lamp-height) - 10px);
+    background: var(--lamp-inner);
+    border-radius: 50% / 10%;
+}
+
+.lamp-reflection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(#ffffff1a, transparent);
+}
+
+.lamp-light {
+    position: absolute;
+    top: 160px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(var(--lamp-width) + 100px);
+    height: 200px;
+    background: radial-gradient(ellipse at top, var(--lamp-light), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.brightness-control {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.sun-icon {
+    color: white;
+    font-size: 20px;
+}
+
+input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    :root {
+        --lamp-width: 120px;
+        --lamp-height: 75px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --lamp-width: 100px;
+        --lamp-height: 60px;
+    }
+    
+    .brightness-control {
+        padding: 15px;
+    }
+}
